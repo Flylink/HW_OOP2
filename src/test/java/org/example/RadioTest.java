@@ -31,6 +31,7 @@ public class RadioTest {
         radio.increaseVolume();
         Assertions.assertEquals(expectedVolume, radio.getCurrentVolume());
     }
+
     @Test
     public void checkIncreaseVolumeAboveMin() {
         Radio radio = new Radio();
