@@ -2,13 +2,8 @@ package org.example;
 
 public class Radio {
 
-    public int currentVolume;
-    public int currentRadioStationNumber;
-
-    public Radio(int currentRadioStationNumber, int currentVolume) {
-        this.currentRadioStationNumber = currentRadioStationNumber;
-        this.currentVolume = currentVolume;
-    }
+    private int currentVolume;
+    private int currentRadioStationNumber;
 
     public void increaseVolume() {
         if (currentVolume < 100) {
@@ -26,6 +21,14 @@ public class Radio {
         return currentVolume;
     }
 
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume >= 0 && currentVolume <= 100) {
+            this.currentVolume = currentVolume;
+        } else {
+            System.out.println("Недопустимое значение громкости");
+        }
+    }
+
     public void setCurrentRadioStationNumber(int currentRadioStationNumber) {
         if (currentRadioStationNumber >= 0 && currentRadioStationNumber <= 9) {
             this.currentRadioStationNumber = currentRadioStationNumber;
@@ -39,7 +42,7 @@ public class Radio {
     public void nextRadioStation() {
         if (currentRadioStationNumber < 9) {
             currentRadioStationNumber = currentRadioStationNumber + 1;
-        } else if (currentRadioStationNumber == 9) {
+        } else {
             currentRadioStationNumber = 0;
         }
     }
@@ -47,7 +50,7 @@ public class Radio {
     public void prevRadioStation() {
         if (currentRadioStationNumber > 0) {
             currentRadioStationNumber = currentRadioStationNumber - 1;
-        } else if (currentRadioStationNumber == 0) {
+        } else {
             currentRadioStationNumber = 9;
         }
     }
