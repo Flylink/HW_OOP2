@@ -7,7 +7,7 @@ public class RadioTest {
 
     @Test
     public void checkIncreaseVolume() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(10);
         radio.setCurrentVolume(50);
         int expectedVolume = 51;
         radio.increaseVolume();
@@ -16,7 +16,7 @@ public class RadioTest {
 
     @Test
     public void checkDecreaseVolume() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(10);
         radio.setCurrentVolume(50);
         int expectedVolume = 49;
         radio.decreaseVolume();
@@ -25,7 +25,7 @@ public class RadioTest {
 
     @Test
     public void checkIncreaseVolumeAboveMax() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(10);
         radio.setCurrentVolume(100);
         int expectedVolume = 100;
         radio.increaseVolume();
@@ -34,7 +34,7 @@ public class RadioTest {
 
     @Test
     public void checkIncreaseVolumeAboveMin() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(10);
         radio.setCurrentVolume(0);
         int expectedVolume = 0;
         radio.decreaseVolume();
@@ -43,7 +43,7 @@ public class RadioTest {
 
     @Test
     public void checkSetCurrentVolumeOutsideAbove() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(10);
         radio.setCurrentVolume(101);
         int expectedVolume = 0;
         Assertions.assertEquals(expectedVolume, radio.getCurrentVolume());
@@ -51,7 +51,7 @@ public class RadioTest {
 
     @Test
     public void checkSetCurrentVolumeOutsideBelow() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(10);
         radio.setCurrentVolume(-1);
         int expectedVolume = 0;
         Assertions.assertEquals(expectedVolume, radio.getCurrentVolume());
@@ -59,7 +59,7 @@ public class RadioTest {
 
     @Test
     public void checkSetCurrentRadioStationNumber() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(10);
         int expected = 5;
         radio.setCurrentRadioStationNumber(5);
         Assertions.assertEquals(expected, radio.getCurrentRadioStationNumber());
@@ -67,7 +67,7 @@ public class RadioTest {
 
     @Test
     public void checkSetCurrentRadioStationNumberOutsideAbove() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(10);
         int expected = 0;
         radio.setCurrentRadioStationNumber(10);
         Assertions.assertEquals(expected, radio.getCurrentRadioStationNumber());
@@ -75,8 +75,8 @@ public class RadioTest {
 
     @Test
     public void checkSetCurrentRadioStationNumberOutsideBelow() {
-        Radio radio = new Radio();
-        int expected = 9;
+        Radio radio = new Radio(9);
+        int expected = 0;
         radio.setCurrentRadioStationNumber(-1);
         Assertions.assertEquals(expected, radio.getCurrentRadioStationNumber());
     }
@@ -84,7 +84,7 @@ public class RadioTest {
 
     @Test
     public void checkNextRadioStation() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(10);
         radio.setCurrentRadioStationNumber(8);
         radio.nextRadioStation();
         Assertions.assertEquals(9, radio.getCurrentRadioStationNumber());
@@ -94,7 +94,7 @@ public class RadioTest {
 
     @Test
     public void testPrevRadioStationMultipleTimes() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(10);
         radio.setCurrentRadioStationNumber(3);
         radio.prevRadioStation();
         radio.prevRadioStation();
@@ -104,7 +104,7 @@ public class RadioTest {
 
     @Test
     public void checkPrevRadioStation() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(10);
         radio.setCurrentRadioStationNumber(1);
         radio.prevRadioStation();
         Assertions.assertEquals(0, radio.getCurrentRadioStationNumber());
@@ -112,5 +112,10 @@ public class RadioTest {
         Assertions.assertEquals(9, radio.getCurrentRadioStationNumber());
     }
 
-}
+    @Test
+    public void checkMaxRadioStationNumber() {
+        Radio radio = new Radio();
+        Assertions.assertEquals(9, radio.getMaxRadioStationNumber());
+    }
 
+}
