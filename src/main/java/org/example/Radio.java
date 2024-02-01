@@ -6,8 +6,12 @@ public class Radio {
     private int currentRadioStationNumber;
     private int maxRadioStationNumber;
 
-    public Radio(int maxRadioStationNumber) {
-        this.maxRadioStationNumber = maxRadioStationNumber;
+    public Radio () {
+        this.maxRadioStationNumber = 9;
+    }
+
+    public Radio(int countRadioStation) {
+        this.maxRadioStationNumber = countRadioStation - 1;
     }
 
     public void increaseVolume() {
@@ -35,9 +39,9 @@ public class Radio {
     }
 
     public void setCurrentRadioStationNumber(int currentRadioStationNumber) {
-        if (currentRadioStationNumber >= 0 && currentRadioStationNumber < maxRadioStationNumber) {
+        if (currentRadioStationNumber >= 0 && currentRadioStationNumber <= maxRadioStationNumber) {
             this.currentRadioStationNumber = currentRadioStationNumber;
-        } else if (currentRadioStationNumber == maxRadioStationNumber) {
+        } else if (currentRadioStationNumber >= maxRadioStationNumber) {
             this.currentRadioStationNumber = 0;
         } else {
             System.out.println("Недопустимое значение номера радиостанции");
@@ -45,7 +49,7 @@ public class Radio {
     }
 
     public void nextRadioStation() {
-        if (currentRadioStationNumber < maxRadioStationNumber - 1) {
+        if (currentRadioStationNumber < maxRadioStationNumber) {
             currentRadioStationNumber = currentRadioStationNumber + 1;
         } else {
             currentRadioStationNumber = 0;
@@ -56,12 +60,16 @@ public class Radio {
         if (currentRadioStationNumber > 0) {
             currentRadioStationNumber = currentRadioStationNumber - 1;
         } else {
-            currentRadioStationNumber = maxRadioStationNumber - 1;
+            currentRadioStationNumber = maxRadioStationNumber;
         }
     }
 
     public int getCurrentRadioStationNumber() {
         return currentRadioStationNumber;
+    }
+
+    public int getMaxRadioStationNumber() {
+        return maxRadioStationNumber;
     }
 
 }

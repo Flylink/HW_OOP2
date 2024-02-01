@@ -112,4 +112,10 @@ public class RadioTest {
         Assertions.assertEquals(9, radio.getCurrentRadioStationNumber());
     }
 
+    @Test
+    public void checkMaxRadioStationNumber() {
+        Radio radio = new Radio();
+        Assertions.assertEquals(9, radio.getMaxRadioStationNumber());
+    }
+
 }
